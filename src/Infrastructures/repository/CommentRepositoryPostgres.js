@@ -22,7 +22,7 @@ class CommentRepositoryPostgres extends CommentRepository {
 
     const result = await this._pool.query(query);
 
-    return new AddedComment({ ...result.rows[0] });
+    return new AddedComment(result.rows[0]);
   }
 
   async deleteCommentById(commentId) {
@@ -40,7 +40,7 @@ class CommentRepositoryPostgres extends CommentRepository {
 
   async getCommentByThreadId(threadId) {
     const query = {
-      text: 'SELECT comments.*, users.username FROM comments INNER JOIN users ON comments.owner = users.id WHERE comments.thread_id = $1 ORDER BY comments.date ASC',
+      text: 'SELECT comments.id, comments.content, comments.owner, comments.thread_id, comments.date, comments.is_delete, users.username FROM comments INNER JOIN users ON comments.owner = users.id WHERE comments.thread_id = $1 ORDER BY comments.date ASC',
       values: [threadId],
     };
 

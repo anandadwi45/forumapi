@@ -40,7 +40,7 @@ class RepliesRepositoryPostgres extends RepliesRepository {
 
   async getRepliesByThreadId(threadId) {
     const query = {
-      text: 'SELECT replies.*, users.username FROM replies LEFT JOIN comments ON replies.comment_id = comments.id LEFT JOIN users ON replies.owner = users.id WHERE comments.thread_id = $1 ORDER BY replies.date ASC',
+      text: 'SELECT replies.id, replies.date, replies.content, replies.owner, replies.comment_id, replies.is_delete, users.username FROM replies LEFT JOIN comments ON replies.comment_id = comments.id LEFT JOIN users ON replies.owner = users.id WHERE comments.thread_id = $1 ORDER BY replies.date ASC',
       values: [threadId],
     };
 

@@ -23,7 +23,6 @@ describe('DetailThreadUseCase', () => {
         username: 'user',
         date: '2023',
         content: 'comment_content',
-        is_delete: false,
       },
     ];
 
@@ -34,7 +33,6 @@ describe('DetailThreadUseCase', () => {
         date: '2023',
         content: 'comment',
         comment_id: 'comment-123',
-        is_delete: false,
       },
     ];
 
@@ -60,7 +58,6 @@ describe('DetailThreadUseCase', () => {
           date: '2023',
           content: 'comment_content',
           is_delete: false,
-          thread_id: 'thread-123',
         },
       ]));
 
@@ -112,7 +109,6 @@ describe('DetailThreadUseCase', () => {
         username: 'user',
         date: '2023',
         content: '**komentar telah dihapus**',
-        is_delete: true,
       },
     ];
 
@@ -122,8 +118,6 @@ describe('DetailThreadUseCase', () => {
         username: 'user',
         date: '2023',
         content: '**balasan telah dihapus**',
-        comment_id: 'comment-123',
-        is_delete: true,
       },
     ];
 
@@ -149,8 +143,10 @@ describe('DetailThreadUseCase', () => {
         {
           id: 'comment-123',
           username: 'user',
+          thread_id: 'thread-123',
+          owner: 'user-123',
           date: '2023',
-          content: '**komentar telah dihapus**',
+          content: 'sebuah komentar',
           is_delete: true,
         },
       ]));
@@ -161,7 +157,7 @@ describe('DetailThreadUseCase', () => {
           id: 'reply-123',
           username: 'user',
           date: '2023',
-          content: '**balasan telah dihapus**',
+          content: 'sebuah balasan',
           comment_id: 'comment-123',
           is_delete: true,
         },
